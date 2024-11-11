@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
@@ -20,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
@@ -29,11 +31,10 @@ import kotlin.math.absoluteValue
 // source: https://stackoverflow.com/questions/78127249/how-to-enable-horizontal-pager-to-show-offscreen-page-using-jetpack-compose
 @Composable
 fun HorizontalActivityPagerExample(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    itemSpacing: Dp = 8.dp,
+    pagerState: PagerState = rememberPagerState { 3 }
 ) {
-    val pagerState = rememberPagerState { 3 }
-    val itemSpacing = 8.dp
-
     Column(modifier = modifier) {
         HorizontalPager(
             modifier = Modifier,
