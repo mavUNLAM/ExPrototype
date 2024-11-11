@@ -16,7 +16,7 @@ fun CreateActivityScreen(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Create Activity"
+        title = "Seleccionar actividad"
     ) {
         HorizontalActivityPagerExample()
         FilledTonalButton(
