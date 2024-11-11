@@ -24,6 +24,8 @@ import androidx.compose.ui.util.lerp
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 import kotlin.math.absoluteValue
 
+
+// source: https://stackoverflow.com/questions/78127249/how-to-enable-horizontal-pager-to-show-offscreen-page-using-jetpack-compose
 @Composable
 fun HorizontalActivityPagerExample(
     modifier: Modifier = Modifier
