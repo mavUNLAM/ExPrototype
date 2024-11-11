@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,24 +41,32 @@ fun HorizontalActivityPagerExample(
             contentPadding = PaddingValues(horizontal = 32.dp),
             pageSpacing = itemSpacing
         ) { page ->
-            MultipleChoiceExample(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .graphicsLayer {
-                        val pageOffset = ((pagerState.currentPage - page) + pagerState
-                            .currentPageOffsetFraction).absoluteValue
-                        alpha = lerp(
-                            start = 0.5f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                        scaleY =   lerp(
-                            start = 0.85f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                    }
-            )
+            val commonModifier = Modifier
+                .padding(horizontal = 5.dp)
+                .graphicsLayer {
+                    val pageOffset = ((pagerState.currentPage - page) + pagerState
+                        .currentPageOffsetFraction).absoluteValue
+                    alpha = lerp(
+                        start = 0.5f,
+                        stop = 1f,
+                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                    )
+                    scaleY = lerp(
+                        start = 0.85f,
+                        stop = 1f,
+                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                    )
+                }
+            Column(
+                modifier = commonModifier,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Multiple choice",
+                    modifier = Modifier.padding(horizontal = 5.dp)
+                )
+                MultipleChoiceExample()
+            }
         }
         Row(
             Modifier
