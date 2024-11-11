@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.mav.software.excellentiaprototype"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.mav.software.excellentiaprototype"
         minSdk = 33
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
