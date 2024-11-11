@@ -14,7 +14,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -31,8 +30,6 @@ fun HorizontalActivityPagerExample(
 ) {
     val pagerState = rememberPagerState { 3 }
     val itemSpacing = 8.dp
-    val coroutineScope = rememberCoroutineScope()
-
 
     Column(modifier = modifier) {
         HorizontalPager(
@@ -49,6 +46,11 @@ fun HorizontalActivityPagerExample(
                             .currentPageOffsetFraction).absoluteValue
                         alpha = lerp(
                             start = 0.5f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
+                        scaleY =   lerp(
+                            start = 0.85f,
                             stop = 1f,
                             fraction = 1f - pageOffset.coerceIn(0f, 1f)
                         )
@@ -73,9 +75,7 @@ fun HorizontalActivityPagerExample(
                 )
             }
         }
-
     }
-
 }
 
 @Preview(showBackground = true)
