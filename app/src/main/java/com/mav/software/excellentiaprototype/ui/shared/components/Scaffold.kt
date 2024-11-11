@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -87,8 +88,9 @@ fun ScaffoldExample(
     ) { innerPadding ->
         Column(
             modifier = modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(innerPadding)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             content()
         }
