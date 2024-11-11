@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -67,7 +68,7 @@ fun MultipleChoiceExample(
             Spacer(
                 modifier = Modifier.padding(paddingSpacer)
             )
-            ElevatedCard(
+            OutlinedCard(
                 colors = CardDefaults.cardColors().copy(containerColor = Color.DarkGray),
                 modifier = Modifier.padding(horizontal = 3.dp)
             ) {
@@ -80,7 +81,7 @@ fun MultipleChoiceExample(
             Spacer(
                 modifier = Modifier.padding(paddingSpacer)
             )
-            ElevatedCard(
+            OutlinedCard(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
@@ -91,7 +92,7 @@ fun MultipleChoiceExample(
             Spacer(
                 modifier = Modifier.padding(paddingSpacer)
             )
-            ElevatedCard(
+            OutlinedCard(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
@@ -102,7 +103,7 @@ fun MultipleChoiceExample(
             Spacer(
                 modifier = Modifier.padding(paddingSpacer)
             )
-            ElevatedCard(
+            OutlinedCard(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
