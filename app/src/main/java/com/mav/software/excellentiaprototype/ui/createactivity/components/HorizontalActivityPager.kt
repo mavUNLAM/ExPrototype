@@ -64,7 +64,7 @@ fun HorizontalActivityPagerExample(
             ) {
                 Text(
                     text = "Multiple choice",
-                    modifier = Modifier.padding(horizontal = 5.dp)
+                    modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                 )
                 MultipleChoiceExample()
             }

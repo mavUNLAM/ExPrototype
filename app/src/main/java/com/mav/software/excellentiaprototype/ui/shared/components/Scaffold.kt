@@ -47,12 +47,19 @@ fun ScaffoldExample(
         topBar = {
             TopAppBar(
                 actions = {
-                    Icon(Icons.Default.Menu, contentDescription = "Menu")
+                    Icon(
+                        Icons.Default.Menu,
+                        contentDescription = "Menu",
+                        modifier = Modifier
+                            .padding(horizontal = 5.dp)
+                    )
                 },
                 navigationIcon = {
                     Icon(
                         Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = "Back"
+                        contentDescription = "Back",
+                        modifier = Modifier
+                            .padding(horizontal = 5.dp)
                     )
                 },
                 colors = topAppBarColors(
@@ -90,7 +97,7 @@ fun ScaffoldExample(
 
 @Preview(showBackground = true)
 @Composable
-fun BottomBar(
+private fun BottomBar(
     modifier: Modifier = Modifier
 ) {
     Row(
