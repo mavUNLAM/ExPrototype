@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.model.MultipleChoiceUi
@@ -24,13 +25,14 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 @Composable
 fun MultipleChoiceExample(
     modifier: Modifier = Modifier,
-    multipleChoice: MultipleChoiceUi = multipleChoiceUiExample
+    multipleChoice: MultipleChoiceUi = multipleChoiceUiExample,
+    elevation: Dp = 5.dp,
+    paddingSpacer: Dp = 4.dp
 ) {
-    val paddingSpacer = 4.dp
     ElevatedCard(
         modifier = modifier,
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = 5.dp
+            defaultElevation = elevation
         )
     ) {
         Column(
