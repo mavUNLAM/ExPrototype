@@ -72,7 +72,7 @@ fun HorizontalActivityPagerExample(
             Modifier
                 .wrapContentHeight()
                 .fillMaxWidth()
-                .padding(bottom = 8.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             repeat(pagerState.pageCount) { iteration ->
