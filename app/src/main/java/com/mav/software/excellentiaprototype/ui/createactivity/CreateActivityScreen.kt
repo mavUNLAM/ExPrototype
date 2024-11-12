@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.createactivity.components.HorizontalActivityPagerExample
+import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 
 @Preview(showBackground = true)
@@ -112,5 +113,22 @@ fun CreateActivityScreen2(
             Text(text = "Preview")
         }
     }
+}
 
+@Preview(showBackground = true)
+@Composable
+fun CreateActivityScreen3(
+    modifier: Modifier = Modifier
+) {
+    ScaffoldExample(
+        modifier = modifier,
+        title = "Preview"
+    ) {
+        FilledTonalButton(
+            onClick = {}
+        ) {
+            Text(text = "Guardar")
+        }
+        MultipleChoiceExample()
+    }
 }
