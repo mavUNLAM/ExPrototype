@@ -2,7 +2,6 @@ package com.mav.software.excellentiaprototype.ui.createactivity
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -75,46 +74,43 @@ fun CreateActivityScreen2(
             ) {
                 Text(text = "Galería")
             }
-            }
-            OutlinedTextField(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(horizontal = 20.dp)
-                    .fillMaxWidth(),
-                value = questionText,
-                onValueChange = { questionText = it },
-                label = { Text(text = "Pregunta") }
-            )
-            OutlinedTextField(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                value = option1Text,
-                onValueChange = { option1Text = it },
-                label = { Text(text = "Opción 1") }
-            )
-            OutlinedTextField(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                value = option2Text,
-                onValueChange = { option2Text = it },
-                label = { Text(text = "Opción 2") }
-            )
-            OutlinedTextField(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                value = option3Text,
-                onValueChange = { option3Text = it },
-                label = { Text(text = "Opción 3") }
-            )
-            OutlinedTextField(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                value = option4Text,
-                onValueChange = { option4Text = it },
-                label = { Text(text = "Opción 4") }
-            )
-            FilledTonalButton(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                onClick = {}
-            ) {
-                Text(text = "Preview")
-            }
         }
+        OutlinedTextField(
+            modifier = commonModifier,
+            value = questionText,
+            onValueChange = { questionText = it },
+            label = { Text(text = "Pregunta") }
+        )
+        OutlinedTextField(
+            modifier = commonModifier,
+            value = option1Text,
+            onValueChange = { option1Text = it },
+            label = { Text(text = "Opción 1") }
+        )
+        OutlinedTextField(
+            modifier = commonModifier,
+            value = option2Text,
+            onValueChange = { option2Text = it },
+            label = { Text(text = "Opción 2") }
+        )
+        OutlinedTextField(
+            modifier = commonModifier,
+            value = option3Text,
+            onValueChange = { option3Text = it },
+            label = { Text(text = "Opción 3") }
+        )
+        OutlinedTextField(
+            modifier = commonModifier,
+            value = option4Text,
+            onValueChange = { option4Text = it },
+            label = { Text(text = "Opción 4") }
+        )
+        FilledTonalButton(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            onClick = {}
+        ) {
+            Text(text = "Preview")
+        }
+    }
 
 }
