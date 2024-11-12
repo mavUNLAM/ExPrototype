@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 
 @Preview(showBackground = true)
 @Composable
@@ -39,11 +38,11 @@ fun SubjectList(
     }
 }
 
-private val defaultActiveList = listOf(
+val defaultActiveList = listOf(
     "Desarrollo de interfaces", "Taller de programación"
 )
 
-private val defaultFinishedList = listOf(
+val defaultFinishedList = listOf(
     "Programación móvil 1", "Programación móvil 2", "Programación móvil 3"
 )
 
