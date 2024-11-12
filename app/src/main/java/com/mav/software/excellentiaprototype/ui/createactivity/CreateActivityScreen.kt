@@ -38,11 +38,17 @@ fun CreateActivityScreen(
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun CreateActivityScreen2(
     modifier: Modifier = Modifier
 ) {
-    var text by remember { mutableStateOf("") }
+    var questionText by remember { mutableStateOf("") }
+    var option1Text by remember { mutableStateOf("") }
+    var option2Text by remember { mutableStateOf("") }
+    var option3Text by remember { mutableStateOf("") }
+    var option4Text by remember { mutableStateOf("") }
+
     ScaffoldExample(
         modifier = modifier,
         title = "Crear actividad"
@@ -62,10 +68,36 @@ fun CreateActivityScreen2(
                 }
             }
             OutlinedTextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text(text = "Consigna") }
+                value = questionText,
+                onValueChange = { questionText = it },
+                label = { Text(text = "Pregunta") }
             )
+            OutlinedTextField(
+                value = option1Text,
+                onValueChange = { option1Text = it },
+                label = { Text(text = "Opción 1") }
+            )
+            OutlinedTextField(
+                value = option2Text,
+                onValueChange = { option2Text = it },
+                label = { Text(text = "Opción 2") }
+            )
+            OutlinedTextField(
+                value = option3Text,
+                onValueChange = { option3Text = it },
+                label = { Text(text = "Opción 3") }
+            )
+            OutlinedTextField(
+                value = option4Text,
+                onValueChange = { option4Text = it },
+                label = { Text(text = "Opción 4") }
+            )
+            FilledTonalButton(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                onClick = {}
+            ) {
+                Text(text = "Preview")
+            }
         }
     }
 }
