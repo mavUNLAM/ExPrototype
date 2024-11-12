@@ -125,10 +125,14 @@ fun CreateActivityScreen3(
         title = "Preview"
     ) {
         FilledTonalButton(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = {}
         ) {
             Text(text = "Guardar")
         }
-        MultipleChoiceExample()
+        MultipleChoiceExample(
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+        )
     }
 }
