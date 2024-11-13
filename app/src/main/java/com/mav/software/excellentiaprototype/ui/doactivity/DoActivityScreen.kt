@@ -12,6 +12,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
+import com.mav.software.excellentiaprototype.ui.doactivity.components.AnswerResultCard
 import com.mav.software.excellentiaprototype.ui.doactivity.components.SubjectList
 import com.mav.software.excellentiaprototype.ui.doactivity.components.defaultFinishedList
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
@@ -68,3 +71,60 @@ fun DoActivityConfigurationScreen(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun DoActivityScreen(
+    modifier: Modifier = Modifier
+) {
+    ScaffoldExample(
+        modifier = modifier,
+        title = "Estudiando"
+    ) {
+        MultipleChoiceExample(
+            modifier = Modifier.fillMaxSize()
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DoActivityScreenPositiveResult(
+    modifier: Modifier = Modifier
+
+) {
+    ScaffoldExample(
+        modifier = modifier,
+        title = "Estudiando"
+    ) {
+        MultipleChoiceExample(
+            modifier = Modifier.fillMaxSize()
+        )
+        Dialog(
+            onDismissRequest = {}
+        ) {
+            AnswerResultCard()
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DoActivityScreenNegativeResult(
+    modifier: Modifier = Modifier
+) {
+    ScaffoldExample(
+        modifier = modifier,
+        title = "Estudiando"
+    ) {
+        MultipleChoiceExample(
+            modifier = Modifier.fillMaxSize()
+        )
+        Dialog(
+            onDismissRequest = {}
+        ) {
+            AnswerResultCard(
+                isCorrectAnswer = false
+            )
+        }
+    }
+}
