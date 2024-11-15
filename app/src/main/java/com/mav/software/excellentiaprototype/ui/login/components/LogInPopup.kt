@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -19,8 +18,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,47 +54,65 @@ fun loginScreen() {
     }
 
     // Column to arrange UI elements vertically
-    Column(modifier = Modifier
-        .fillMaxHeight()
-        .padding(40.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxHeight()
+            .padding(40.dp)
+    ) {
 
         // Welcome message
-        Text(text = "Hello,\nWelcome to the login page", fontSize = 25.sp, color = Color.Blue,
-            modifier = Modifier.fillMaxWidth().padding(0.dp, 50.dp, 0.dp, 0.dp)
+        Text(
+            text = "Hello,\nWelcome to the login page", fontSize = 25.sp, color = Color.Blue,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 50.dp, 0.dp, 0.dp)
         )
 
         // Username input field
-        OutlinedTextField(value = userName.value, onValueChange = {
-            userName.value = it
-        },
+        OutlinedTextField(
+            value = userName.value, onValueChange = {
+                userName.value = it
+            },
             leadingIcon = {
                 Icon(Icons.Default.Person, contentDescription = "person")
             },
             label = {
                 Text(text = "username")
             },
-            modifier = Modifier.fillMaxWidth().padding(0.dp, 20.dp, 0.dp, 0.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 20.dp, 0.dp, 0.dp)
         )
 
         // Password input field
-        OutlinedTextField(value = userPassword.value, onValueChange = {
-            userPassword.value = it
-        },
+        OutlinedTextField(
+            value = userPassword.value, onValueChange = {
+                userPassword.value = it
+            },
             leadingIcon = {
                 Icon(Icons.Default.Info, contentDescription = "password")
             },
             label = {
                 Text(text = "password")
             },
-            modifier = Modifier.fillMaxWidth().padding(0.dp, 20.dp, 0.dp, 0.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 20.dp, 0.dp, 0.dp),
             visualTransformation = PasswordVisualTransformation()
         )
 
         // Login button
-        OutlinedButton(onClick = { },
-            modifier = Modifier.fillMaxWidth().padding(0.dp, 25.dp, 0.dp, 0.dp)) {
-            Text(text = "Login",
-                modifier = Modifier.fillMaxWidth().padding(5.dp),
+        OutlinedButton(
+            onClick = { },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 25.dp, 0.dp, 0.dp)
+        ) {
+            Text(
+                text = "Login",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp
             )
@@ -101,35 +120,44 @@ fun loginScreen() {
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun LoginFields(
-    email: String, password: String,
-    onEmailChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit,
-    onForgotPasswordClick: () -> Unit
+    modifier: Modifier = Modifier,
+    onForgotPasswordClick: () -> Unit = {}
 ) {
-    Column {
-        TextField(
-            value = email,
-            label = "Email",
-            placeholder = "Enter your email address",
-            onValueChange = onEmailChange,
-            leadingIcon = {
-                Icon(Icons.Default.Email, contentDescription = "Email")
+    var user by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    Column(modifier = modifier) {
+        OutlinedTextField(
+            value = user,
+            onValueChange = { user = it},
+            label = {
+                Text(text = "Usuario")
             },
+            placeholder = {
+                Text(text = "Introduzca su usuario")
+            },
+            visualTransformation = VisualTransformation.None,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
-            )
+            ),
+            leadingIcon = {
+                Icon(Icons.Default.Person, contentDescription = "Usuario")
+            }
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
-
-        TextField(
+        OutlinedTextField(
             value = password,
-            label = "Password",
-            placeholder = "Enter your password",
-            onValueChange = onPasswordChange,
+            onValueChange = { password = it},
+            label = {
+                Text(text = "Contraseña")
+            },
+            placeholder = {
+                Text(text = "Introduzca su contraseña")
+            },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
@@ -140,50 +168,30 @@ fun LoginFields(
             }
         )
 
+        Spacer(modifier = Modifier.height(10.dp))
+
         TextButton(onClick = onForgotPasswordClick, modifier = Modifier.align(Alignment.End)) {
-            Text(text = "Forgot Password?")
+            Text(text = "¿Olvidaste tu contraseña?")
         }
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun LoginFooter(
-    onSignInClick: () -> Unit,
-    onSignUpClick: () -> Unit
+    modifier: Modifier = Modifier,
+    onSignInClick: () -> Unit = {},
+    onSignUpClick: () -> Unit = {}
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Button(onClick = onSignInClick, modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Sign In")
+            Text(text = "Iniciar sesión")
         }
         TextButton(onClick = onSignUpClick) {
-            Text(text = "Don't have an account, click here")
+            Text(text = "¿No tienes una cuenta? Registrate aquí.")
         }
     }
-}
-
-@Composable
-fun TextField(
-    value: String,
-    label: String,
-    placeholder: String,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    onValueChange: (String) -> Unit
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = {
-            Text(text = label)
-        },
-        placeholder = {
-            Text(text = placeholder)
-        },
-        visualTransformation = visualTransformation,
-        keyboardOptions = keyboardOptions,
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon
-    )
 }
