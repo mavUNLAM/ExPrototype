@@ -5,21 +5,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
-@Preview(showBackground = true)
 @Composable
 fun ActivityResolutionScreen(
     modifier: Modifier = Modifier
@@ -32,25 +31,22 @@ fun ActivityResolutionScreen(
     ) {
         Text(
             modifier = Modifier
-                .padding(20.dp),
+                .padding(start = 20.dp, top = 30.dp, end = 20.dp, bottom = 10.dp),
             text = "¿Qué es la curva del olvido?",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.headlineMedium
         )
         Text(
             modifier = Modifier.padding(20.dp),
             text = CURVA_OLVIDO_TEXT,
             textAlign = TextAlign.Justify,
-            fontSize = 15.sp,
-            lineHeight = 20.sp
+            style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            modifier = Modifier.padding(50.dp),
+            modifier = Modifier.padding(horizontal = 50.dp, vertical = 10.dp),
             text = EBBIN_TEXT,
             textAlign = TextAlign.Justify,
-            fontSize = 15.sp,
-            lineHeight = 18.sp,
-            fontStyle = FontStyle.Italic
+            fontStyle = FontStyle.Italic,
+            style = MaterialTheme.typography.bodyMedium
         )
         Image(
             modifier = Modifier
@@ -60,6 +56,14 @@ fun ActivityResolutionScreen(
             contentDescription = "Image",
             contentScale = ContentScale.FillWidth
         )
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun ActivityResolutionScreenPreview() {
+    ExcellentiaPrototypeTheme {
+        ActivityResolutionScreen()
     }
 }
 
