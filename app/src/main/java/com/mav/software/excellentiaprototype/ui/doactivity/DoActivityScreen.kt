@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -19,8 +19,8 @@ import com.mav.software.excellentiaprototype.ui.doactivity.components.SubjectLis
 import com.mav.software.excellentiaprototype.ui.doactivity.components.defaultFinishedList
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.TitleWithArrow
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
-@Preview(showBackground = true)
 @Composable
 fun DoActivityConfigurationScreen(
     modifier: Modifier = Modifier
@@ -71,7 +71,14 @@ fun DoActivityConfigurationScreen(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
+@Composable
+private fun DoActivityConfigurationScreenPreview() {
+    ExcellentiaPrototypeTheme {
+        DoActivityConfigurationScreen()
+    }
+}
+
 @Composable
 fun DoActivityScreen(
     modifier: Modifier = Modifier
@@ -81,12 +88,20 @@ fun DoActivityScreen(
         title = "Estudiando"
     ) {
         MultipleChoiceExample(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
         )
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
+@Composable
+private fun DoActivityScreenPreview() {
+    ExcellentiaPrototypeTheme {
+        DoActivityScreen()
+    }
+}
+
 @Composable
 fun DoActivityScreenPositiveResult(
     modifier: Modifier = Modifier
@@ -107,7 +122,14 @@ fun DoActivityScreenPositiveResult(
     }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
+@Composable
+private fun DoActivityScreenPositiveResultPreview() {
+    ExcellentiaPrototypeTheme {
+        DoActivityScreenPositiveResult()
+    }
+}
+
 @Composable
 fun DoActivityScreenNegativeResult(
     modifier: Modifier = Modifier
@@ -126,5 +148,13 @@ fun DoActivityScreenNegativeResult(
                 isCorrectAnswer = false
             )
         }
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun DoActivityScreenNegativeResultPreview() {
+    ExcellentiaPrototypeTheme {
+        DoActivityScreenNegativeResult()
     }
 }

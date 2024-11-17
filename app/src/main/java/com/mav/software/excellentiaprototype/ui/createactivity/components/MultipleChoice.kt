@@ -10,14 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.R
@@ -29,15 +30,19 @@ fun MultipleChoiceExample(
     modifier: Modifier = Modifier,
     multipleChoice: MultipleChoiceUi = multipleChoiceUiExample,
     elevation: Dp = 5.dp,
-    paddingSpacer: Dp = 4.dp
+    paddingSpacer: Dp = 5.dp
 ) {
     ElevatedCard(
         modifier = modifier,
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = elevation
+        ),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
         )
     ) {
         Column(
+            modifier = Modifier.padding(10.dp),
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             if(multipleChoice.thumbnail != null) {
@@ -53,7 +58,10 @@ fun MultipleChoiceExample(
                     Image(
                         modifier = Modifier,
                         painter = painterResource(id = multipleChoice.thumbnail),
-                        contentDescription = "Imagen multiplechoice"
+                        contentDescription = "Imagen multiplechoice",
+                        colorFilter = ColorFilter.tint(
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
                     )
                 }
             }
@@ -62,22 +70,26 @@ fun MultipleChoiceExample(
             )
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 4.dp),
+                    .padding(horizontal = 6.dp),
                 text = multipleChoice.question,
-                fontWeight = FontWeight.ExtraBold
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
             )
             HorizontalDivider(
                 modifier = Modifier.padding(paddingSpacer),
                 thickness = 2.dp
             )
             OutlinedCard(
-                colors = CardDefaults.cardColors().copy(containerColor = Color.DarkGray),
-                modifier = Modifier.padding(horizontal = 3.dp)
+                modifier = Modifier.padding(start = 3.dp, top = 3.dp, end = 3.dp),
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                )
             ) {
                 Text(
-                    modifier = Modifier.padding(3.dp),
+                    modifier = Modifier.padding(8.dp),
                     text = multipleChoice.choices[0],
-                    color = Color.White
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.ExtraBold
                 )
             }
             Spacer(
@@ -87,8 +99,10 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
-                    modifier = Modifier.padding(3.dp),
-                    text = multipleChoice.choices[1]
+                    modifier = Modifier.padding(8.dp),
+                    text = multipleChoice.choices[1],
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Spacer(
@@ -98,8 +112,10 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
-                    modifier = Modifier.padding(3.dp),
-                    text = multipleChoice.choices[2]
+                    modifier = Modifier.padding(8.dp),
+                    text = multipleChoice.choices[2],
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Spacer(
@@ -109,9 +125,10 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(horizontal = 3.dp)
             ){
                 Text(
-                    modifier = Modifier.padding(3.dp),
-                    text = multipleChoice.choices[3]
-
+                    modifier = Modifier.padding(8.dp),
+                    text = multipleChoice.choices[3],
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Spacer(
@@ -135,7 +152,7 @@ private val multipleChoiceUiExample = MultipleChoiceUi(
     thumbnail = R.drawable.image_example
 )
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun MultipleChoiceExamplePreview() {
     ExcellentiaPrototypeTheme {
