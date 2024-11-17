@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -77,7 +79,10 @@ fun CreateActivityScreen2(
         ) {
             Image(
                 painter = painterResource(R.drawable.image_example),
-                contentDescription = "ImageMultipleChoice"
+                contentDescription = "ImageMultipleChoice",
+                colorFilter = ColorFilter.tint(
+                    color = MaterialTheme.colorScheme.onBackground
+                )
             )
             FilledTonalButton(
                 onClick = {}
@@ -95,25 +100,41 @@ fun CreateActivityScreen2(
             modifier = commonModifier,
             value = option1Text,
             onValueChange = { option1Text = it },
-            label = { Text(text = "Opción 1") }
+            label = { Text(text = "Opción 1") },
+            trailingIcon = { Checkbox(
+                checked = true,
+                onCheckedChange = {}
+            ) }
         )
         OutlinedTextField(
             modifier = commonModifier,
             value = option2Text,
             onValueChange = { option2Text = it },
-            label = { Text(text = "Opción 2") }
+            label = { Text(text = "Opción 2") },
+            trailingIcon = { Checkbox(
+                checked = false,
+                onCheckedChange = {}
+            ) }
         )
         OutlinedTextField(
             modifier = commonModifier,
             value = option3Text,
             onValueChange = { option3Text = it },
-            label = { Text(text = "Opción 3") }
+            label = { Text(text = "Opción 3") },
+            trailingIcon = { Checkbox(
+                checked = false,
+                onCheckedChange = {}
+            ) }
         )
         OutlinedTextField(
             modifier = commonModifier,
             value = option4Text,
             onValueChange = { option4Text = it },
-            label = { Text(text = "Opción 4") }
+            label = { Text(text = "Opción 4") },
+            trailingIcon = { Checkbox(
+                checked = false,
+                onCheckedChange = {}
+            ) }
         )
         FilledTonalButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
