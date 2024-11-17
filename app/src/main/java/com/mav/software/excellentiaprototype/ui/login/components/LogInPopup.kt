@@ -1,6 +1,7 @@
 package com.mav.software.excellentiaprototype.ui.login.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -27,10 +29,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
-@Preview(showBackground = true)
 @Composable
 fun LoginFields(
     modifier: Modifier = Modifier,
@@ -42,11 +45,12 @@ fun LoginFields(
     var isPasswordError by remember { mutableStateOf(false) }
     var userErrorText by remember { mutableStateOf("") }
     var passwordErrorText by remember { mutableStateOf("") }
+    var rememberLogin by remember { mutableStateOf(false) }
 
     Column(modifier = modifier) {
         OutlinedTextField(
             modifier = Modifier
-                .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 5.dp )
+                .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 2.dp )
                 .fillMaxWidth(),
             isError = isUserError,
             value = user,
@@ -80,7 +84,7 @@ fun LoginFields(
 
         OutlinedTextField(
             modifier = Modifier
-                .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 5.dp )
+                .padding(start = 10.dp, end = 10.dp, top = 10.dp, bottom = 2.dp )
                 .fillMaxWidth(),
             isError = isPasswordError,
             value = password,
@@ -114,9 +118,25 @@ fun LoginFields(
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        TextButton(onClick = onForgotPasswordClick, modifier = Modifier.align(Alignment.End)) {
-            Text(text = "¿Olvidaste tu contraseña?")
+        Row(
+            modifier = Modifier.padding(start = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = "Mantener sesión")
+            Checkbox(
+                checked = rememberLogin,
+                onCheckedChange = { rememberLogin = it }
+            )
+            Column(modifier = Modifier.fillMaxWidth()) {
+                TextButton(onClick = onForgotPasswordClick, modifier = Modifier.align(Alignment.End)) {
+                    Text(text = "¿Olvidaste tu contraseña?")
+                }
+            }
         }
+
+        Spacer(
+            modifier = Modifier.padding(20.dp)
+        )
 
         LoginFooter(
             onSignInClick = {
@@ -133,7 +153,15 @@ fun LoginFields(
     }
 }
 
+@PreviewLightDark
 @Preview(showBackground = true)
+@Composable
+private fun LoginFieldsPreview() {
+    ExcellentiaPrototypeTheme {
+        LoginFields()
+    }
+}
+
 @Composable
 fun LoginFooter(
     modifier: Modifier = Modifier,
@@ -155,5 +183,14 @@ fun LoginFooter(
         TextButton(onClick = onSignUpClick) {
             Text(text = "¿No tienes una cuenta? Registrate aquí")
         }
+    }
+}
+
+@PreviewLightDark
+@Preview(showBackground = true)
+@Composable
+private fun LoginFooterPreview() {
+    ExcellentiaPrototypeTheme {
+        LoginFooter()
     }
 }
