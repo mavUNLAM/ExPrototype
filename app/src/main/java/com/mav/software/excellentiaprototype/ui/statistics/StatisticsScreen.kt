@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,8 +18,6 @@ import com.mav.software.excellentiaprototype.model.Statistic
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.statistics.components.ChartListItem
 import com.mav.software.excellentiaprototype.ui.statistics.components.PieChart
-import com.mav.software.excellentiaprototype.ui.theme.GrassGreen
-import com.mav.software.excellentiaprototype.ui.theme.PurpleGrey40
 
 @Composable
 fun StatisticsScreen(
@@ -69,8 +68,8 @@ fun StatisticsPreview() {
         viewModel = StatisticsViewModel(
             title = "Actividad 1",
             statistics = listOf(
-                Statistic("No resolvieron", 25f, PurpleGrey40),
-                Statistic("Resolvieron", 75f, GrassGreen),
+                Statistic("No resolvieron", 25f, MaterialTheme.colorScheme.secondary),
+                Statistic("Resolvieron", 75f, MaterialTheme.colorScheme.primary),
             )
         )
     )
