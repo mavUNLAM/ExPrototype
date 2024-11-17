@@ -72,7 +72,7 @@ fun MultipleChoiceExample(
                 modifier = Modifier
                     .padding(horizontal = 6.dp),
                 text = multipleChoice.question,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
             HorizontalDivider(
@@ -88,7 +88,7 @@ fun MultipleChoiceExample(
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = multipleChoice.choices[0],
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.ExtraBold
                 )
             }
@@ -101,7 +101,7 @@ fun MultipleChoiceExample(
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = multipleChoice.choices[1],
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -114,7 +114,7 @@ fun MultipleChoiceExample(
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = multipleChoice.choices[2],
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -127,7 +127,7 @@ fun MultipleChoiceExample(
                 Text(
                     modifier = Modifier.padding(8.dp),
                     text = multipleChoice.choices[3],
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold
                 )
             }
