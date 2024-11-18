@@ -26,10 +26,8 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 fun DoActivityConfigurationScreen(
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Configuración de actividades",
-        navController = createFakeNavController()
+    Column(
+        modifier = modifier
     ) {
         Column(
             modifier = Modifier
@@ -77,7 +75,11 @@ fun DoActivityConfigurationScreen(
 @Composable
 private fun DoActivityConfigurationScreenPreview() {
     ExcellentiaPrototypeTheme {
-        DoActivityConfigurationScreen()
+        ScaffoldExample(
+            title = "Configuracion de actividades"
+        ) {
+            DoActivityConfigurationScreen()
+        }
     }
 }
 
@@ -85,10 +87,8 @@ private fun DoActivityConfigurationScreenPreview() {
 fun DoActivityScreen(
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Estudiando",
-        navController = createFakeNavController()
+    Column(
+        modifier = modifier
     ) {
         MultipleChoiceExample(
             modifier = Modifier
@@ -101,23 +101,21 @@ fun DoActivityScreen(
 @Composable
 private fun DoActivityScreenPreview() {
     ExcellentiaPrototypeTheme {
-        DoActivityScreen()
+        ScaffoldExample(
+            title = "Estudiando"
+        ){
+            DoActivityScreen()
+        }
     }
 }
 
 @Composable
 fun DoActivityScreenPositiveResult(
     modifier: Modifier = Modifier
-
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Estudiando",
-        navController = createFakeNavController()
+    Column(
+        modifier = modifier
     ) {
-        MultipleChoiceExample(
-            modifier = Modifier.fillMaxSize()
-        )
         Dialog(
             onDismissRequest = {}
         ) {
@@ -130,7 +128,15 @@ fun DoActivityScreenPositiveResult(
 @Composable
 private fun DoActivityScreenPositiveResultPreview() {
     ExcellentiaPrototypeTheme {
-        DoActivityScreenPositiveResult()
+        ScaffoldExample(
+            title = "Estudiando"
+        ) {
+            MultipleChoiceExample(
+                modifier = Modifier.fillMaxSize()
+            )
+
+            DoActivityScreenPositiveResult()
+        }
     }
 }
 
@@ -138,14 +144,9 @@ private fun DoActivityScreenPositiveResultPreview() {
 fun DoActivityScreenNegativeResult(
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Estudiando",
-        navController = createFakeNavController()
+    Column(
+        modifier = modifier
     ) {
-        MultipleChoiceExample(
-            modifier = Modifier.fillMaxSize()
-        )
         Dialog(
             onDismissRequest = {}
         ) {
@@ -160,6 +161,14 @@ fun DoActivityScreenNegativeResult(
 @Composable
 private fun DoActivityScreenNegativeResultPreview() {
     ExcellentiaPrototypeTheme {
-        DoActivityScreenNegativeResult()
+        ScaffoldExample(
+            title = "Estudiando"
+        ) {
+            MultipleChoiceExample(
+                modifier = Modifier.fillMaxSize()
+            )
+
+            DoActivityScreenNegativeResult()
+        }
     }
 }

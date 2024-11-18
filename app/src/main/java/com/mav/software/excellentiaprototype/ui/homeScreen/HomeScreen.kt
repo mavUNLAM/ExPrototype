@@ -51,6 +51,10 @@ fun HomeScreen(
             Text(
                 color = MaterialTheme.colorScheme.background,
                 text = "Ver actividades",
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("DoActivityConfigurationScreen")
+                    }
             )
         }
 

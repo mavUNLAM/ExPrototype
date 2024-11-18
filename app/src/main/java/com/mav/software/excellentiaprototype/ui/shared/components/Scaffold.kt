@@ -41,7 +41,7 @@ fun ScaffoldExample(
     modifier: Modifier = Modifier,
     title: String = "Top app bar",
     showBack: Boolean = true,
-    navController: NavController,
+    navController: NavController = createFakeNavController(),
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
     Scaffold(

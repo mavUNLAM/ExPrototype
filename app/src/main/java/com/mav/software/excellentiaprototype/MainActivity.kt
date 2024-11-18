@@ -27,6 +27,8 @@ class MainActivity : ComponentActivity() {
                         "CreateActivityScreen" -> "Seleccionar actividad"
                         "CreateActivityScreen2" -> "Crear actividad"
                         "CreateActivityScreen3" -> "Preview"
+                        "DoActivityScreen" -> "Estudiando"
+                        "DoActivityConfigurationScreen" -> "Configuración de actividades"
                         else -> ""
                     },
                     showBack = when(currentRoute) {

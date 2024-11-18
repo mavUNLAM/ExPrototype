@@ -11,6 +11,8 @@ import com.mav.software.excellentiaprototype.model.Statistic
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen2
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen3
+import com.mav.software.excellentiaprototype.ui.doactivity.DoActivityConfigurationScreen
+import com.mav.software.excellentiaprototype.ui.doactivity.DoActivityScreen
 import com.mav.software.excellentiaprototype.ui.homeScreen.HomeScreen
 import com.mav.software.excellentiaprototype.ui.statistics.StatisticsScreen
 import com.mav.software.excellentiaprototype.ui.statistics.StatisticsViewModel
@@ -61,6 +63,14 @@ fun AppNavigation(
             CreateActivityScreen3(
                 navController = navController
             )
+        }
+
+        composable ("DoActivityScreen") {
+            DoActivityScreen()
+        }
+
+        composable ("DoActivityConfigurationScreen") {
+            DoActivityConfigurationScreen()
         }
     }
 }
