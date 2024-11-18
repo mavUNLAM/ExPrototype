@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.createactivity.components.HorizontalActivityPagerExample
 import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
+import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
@@ -54,7 +55,9 @@ fun CreateActivityScreen(
 @Composable
 private fun CreateActivityScreenPreview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen(navController = createFakeNavController())
+        ScaffoldExample(title = "Seleccionar actividad") {
+            CreateActivityScreen(navController = createFakeNavController())
+        }
     }
 }
 
@@ -155,9 +158,11 @@ fun CreateActivityScreen2(
 @Composable
 fun CreateActivityScreen2Preview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen2(
-            navController = createFakeNavController()
-        )
+        ScaffoldExample(title = "Crear actividad") {
+            CreateActivityScreen2(
+                navController = createFakeNavController()
+            )
+        }
     }
 }
 
@@ -192,8 +197,10 @@ fun CreateActivityScreen3(
 @Composable
 fun CreateActivityScreen3Preview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen3(
-            navController = createFakeNavController()
-        )
+        ScaffoldExample(title = "Preview") {
+            CreateActivityScreen3(
+                navController = createFakeNavController()
+            )
+        }
     }
 }
