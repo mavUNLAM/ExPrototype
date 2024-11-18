@@ -1,5 +1,6 @@
 package com.mav.software.excellentiaprototype.ui.statistics
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,7 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.model.Statistic
+import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.statistics.components.ChartListItem
 import com.mav.software.excellentiaprototype.ui.statistics.components.PieChart
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
@@ -20,7 +24,8 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 @Composable
 fun StatisticsScreen(
     viewModel: StatisticsViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     Column(
         modifier = modifier
@@ -47,7 +52,15 @@ fun StatisticsScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             for (statistic in viewModel.statistics) {
-                ChartListItem(statistic.title, statistic.percent, statistic.color)
+                ChartListItem(
+                    text = statistic.title,
+                    percent = statistic.percent,
+                    color = statistic.color,
+                    modifier = Modifier
+                        .clickable {
+                            navController.navigate("StatisticsListScreen")
+                        }
+                )
             }
         }
     }
@@ -57,15 +70,17 @@ fun StatisticsScreen(
 @Composable
 private fun StatisticsPreview() {
     ExcellentiaPrototypeTheme {
-        StatisticsScreen(
-            viewModel = StatisticsViewModel(
-                title = "Actividad 1",
-                statistics = listOf(
-                    Statistic("No resolvieron", 25f, MaterialTheme.colorScheme.primary),
-                    Statistic("Resolvieron", 75f, MaterialTheme.colorScheme.primaryContainer),
-                )
+        ScaffoldExample(title = "Estadisticas Actividad 1") {
+            StatisticsScreen(
+                viewModel = StatisticsViewModel(
+                    title = "Actividad 1",
+                    statistics = listOf(
+                        Statistic("No resolvieron", 25f, MaterialTheme.colorScheme.primary),
+                        Statistic("Resolvieron", 75f, MaterialTheme.colorScheme.primaryContainer),
+                    )
+                ),
+                navController = createFakeNavController()
             )
-        )
+        }
     }
-
 }

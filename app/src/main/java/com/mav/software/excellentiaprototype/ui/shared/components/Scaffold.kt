@@ -12,13 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -51,22 +49,24 @@ fun ScaffoldExample(
                     Icon(
                         Icons.Default.Menu,
                         contentDescription = "Menu",
-                        modifier = Modifier
-                            .padding(horizontal = 5.dp),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        modifier =
+                            Modifier
+                                .padding(horizontal = 5.dp),
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                 },
                 navigationIcon = {
-                    if (showBack){
+                    if (showBack) {
                         Icon(
                             Icons.AutoMirrored.Default.ArrowBack,
                             contentDescription = "Back",
-                            modifier = Modifier
-                                .padding(horizontal = 5.dp)
-                                .clickable {
-                                    navController.popBackStack()
-                                },
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            modifier =
+                                Modifier
+                                    .padding(horizontal = 5.dp)
+                                    .clickable {
+                                        navController.popBackStack()
+                                    },
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                     }
                 },
@@ -77,9 +77,9 @@ fun ScaffoldExample(
                 title = {
                     Text(
                         text = title,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
-                }
+                },
             )
         },
         bottomBar = {
@@ -90,16 +90,12 @@ fun ScaffoldExample(
                 BottomBar(modifier = Modifier.fillMaxWidth())
             }
         },
-        floatingActionButton = {
-            FloatingActionButton(onClick = { }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        }
     ) { innerPadding ->
         Column(
-            modifier = modifier
-                .padding(innerPadding)
-                .fillMaxSize(),
+            modifier =
+                modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             content()

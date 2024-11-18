@@ -3,77 +3,85 @@ package com.mav.software.excellentiaprototype.ui.homeScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
-        modifier = modifier
-            .padding(16.dp)
-            .fillMaxSize()
+        modifier =
+            modifier
+                .padding(16.dp)
+                .fillMaxSize(),
     ) {
-        Text("Actividades")
+        Text("Seleccione una opcion")
 
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .padding(10.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
         ) {
-            Text(
-                color = MaterialTheme.colorScheme.background,
-                text = "Crear actividad",
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate("CreateActivityScreen")
-                    }
-            )
-            Text(
-                color = MaterialTheme.colorScheme.background,
-                text = "Ver actividades",
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate("DoActivityConfigurationScreen")
-                    }
-            )
-        }
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .padding(10.dp)
-        ) {
-            Text("Estadisticas",
-                color = MaterialTheme.colorScheme.background,
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate("StatisticsScreen")
-                    }
-            )
+            Button(onClick = {
+                navController.navigate("CreateActivityScreen")
+            }) {
+                Text(
+                    text = "Crear actividad",
+                    textAlign = TextAlign.Center,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                )
+            }
 
+            Button(onClick = {
+                navController.navigate("DoActivityScreen")
+            }) {
+                Text(
+                    text = "Ver actividades",
+                    textAlign = TextAlign.Center,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                )
+            }
+
+            Button(onClick = {
+                navController.navigate("StatisticsScreen")
+            }) {
+                Text(
+                    text = "Estadisticas",
+                    textAlign = TextAlign.Center,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                )
+            }
         }
     }
 }
@@ -82,10 +90,11 @@ fun HomeScreen(
 @Preview
 fun HomeScreenPreview() {
     ExcellentiaPrototypeTheme {
-        Scaffold() { padding ->
+        ScaffoldExample(
+            title = "Bienvenido Pepito!"
+        ) {
             HomeScreen(
-                modifier = Modifier.padding(padding),
-                navController = createFakeNavController()
+                navController = createFakeNavController(),
             )
         }
     }

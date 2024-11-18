@@ -21,21 +21,24 @@ class MainActivity : ComponentActivity() {
 
             ExcellentiaPrototypeTheme {
                 ScaffoldExample(
-                    title = when(currentRoute) {
-                        "HomeScreen" -> "Bienvenido Juan Carlos Otero!"
-                        "StatisticsScreen" -> "Estadisticas comision"
-                        "CreateActivityScreen" -> "Seleccionar actividad"
-                        "CreateActivityScreen2" -> "Crear actividad"
-                        "CreateActivityScreen3" -> "Preview"
-                        "DoActivityScreen" -> "Estudiando"
-                        "DoActivityConfigurationScreen" -> "Configuración de actividades"
-                        else -> ""
-                    },
-                    showBack = when(currentRoute) {
-                        "HomeScreen" -> false
-                        else -> true
-                    },
-                    navController = navController
+                    title =
+                        when (currentRoute) {
+                            "HomeScreen" -> "Bienvenido Juan Carlos Otero!"
+                            "StatisticsScreen" -> "Estadisticas comision"
+                            "StatisticsListScreen" -> "Listado actividad 1"
+                            "CreateActivityScreen" -> "Seleccionar actividad"
+                            "CreateActivityScreen2" -> "Crear actividad"
+                            "CreateActivityScreen3" -> "Preview"
+                            "DoActivityScreen" -> "Estudiando"
+                            "DoActivityConfigurationScreen" -> "Configuración de actividades"
+                            else -> ""
+                        },
+                    showBack =
+                        when (currentRoute) {
+                            "HomeScreen" -> false
+                            else -> true
+                        },
+                    navController = navController,
                 ) {
                     AppNavigation(navController = navController)
                 }

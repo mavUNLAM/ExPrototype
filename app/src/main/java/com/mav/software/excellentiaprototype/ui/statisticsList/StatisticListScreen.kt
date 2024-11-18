@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
-import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -29,42 +28,37 @@ fun StatisticListScreen(
     students: List<String>,
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(modifier = modifier,
-        title = "Resolvieron actividad 1",
-        navController = createFakeNavController()
+    Column(
+        modifier = modifier
+            .verticalScroll(state = rememberScrollState())
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Column(
+        Text(
+            text ="Listado de estudiantes",
             modifier = Modifier
-                .verticalScroll(state = rememberScrollState())
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            Text(
-                text ="Listado estudiantes",
-                modifier = Modifier
-                    .padding(10.dp),
-                style = MaterialTheme.typography.headlineMedium
-            )
+                .padding(10.dp),
+            style = MaterialTheme.typography.headlineMedium
+        )
 
-            for (name in students) {
-                Row(
+        for (name in students) {
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+                Box(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                        .size(5.dp)
+                        .clip(CircleShape)
+                        .background(Color.Black)
                 )
-                {
-                    Box(
-                        modifier = Modifier
-                            .size(5.dp)
-                            .clip(CircleShape)
-                            .background(Color.Black)
-                    )
-                    Text(
-                        text = name,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.bodyLarge
+                )
             }
         }
     }
@@ -97,8 +91,12 @@ private val students = listOf(
 @Preview
 fun StatisticListScreenPreview(){
     ExcellentiaPrototypeTheme {
-        StatisticListScreen(
-            students = students
-        )
+        ScaffoldExample(
+            title = "Listado actividad 1"
+        ){
+            StatisticListScreen(
+                students = students
+            )
+        }
     }
 }

@@ -19,7 +19,6 @@ import com.mav.software.excellentiaprototype.ui.doactivity.components.SubjectLis
 import com.mav.software.excellentiaprototype.ui.doactivity.components.defaultFinishedList
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.TitleWithArrow
-import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -27,45 +26,48 @@ fun DoActivityConfigurationScreen(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .padding(5.dp)
+                    .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             TitleWithArrow(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-                    .fillMaxWidth(),
-                title = "Aparecerán las actividades de las siguientes materias"
+                modifier =
+                    Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth(),
+                title = "Aparecerán las actividades de las siguientes materias",
             )
             Text(
                 modifier = Modifier.padding(top = 10.dp, start = 10.dp, end = 10.dp),
                 text = "Materias activas",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             SubjectList()
             Text(
                 modifier = Modifier.padding(top = 20.dp, start = 10.dp, end = 10.dp),
                 text = "Materias pasadas",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             SubjectList(
-                list = defaultFinishedList
+                list = defaultFinishedList,
             )
             TitleWithArrow(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-                    .fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth(),
                 title = "Seleccionar tipo de actividad",
-                minLines = 1
+                minLines = 1,
             )
             SubjectList(
-                list = listOf("Multiple choice", "Verdadero o falso", "Etc.")
+                list = listOf("Multiple choice", "Verdadero o falso", "Etc."),
             )
         }
     }
@@ -76,7 +78,7 @@ fun DoActivityConfigurationScreen(
 private fun DoActivityConfigurationScreenPreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Configuracion de actividades"
+            title = "Configuracion de actividades",
         ) {
             DoActivityConfigurationScreen()
         }
@@ -88,11 +90,12 @@ fun DoActivityScreen(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         MultipleChoiceExample(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier =
+                Modifier
+                    .fillMaxSize(),
         )
     }
 }
@@ -102,8 +105,8 @@ fun DoActivityScreen(
 private fun DoActivityScreenPreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Estudiando"
-        ){
+            title = "Estudiando",
+        ) {
             DoActivityScreen()
         }
     }
@@ -114,10 +117,10 @@ fun DoActivityScreenPositiveResult(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Dialog(
-            onDismissRequest = {}
+            onDismissRequest = {},
         ) {
             AnswerResultCard()
         }
@@ -129,10 +132,10 @@ fun DoActivityScreenPositiveResult(
 private fun DoActivityScreenPositiveResultPreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Estudiando"
+            title = "Estudiando",
         ) {
             MultipleChoiceExample(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
 
             DoActivityScreenPositiveResult()
@@ -145,13 +148,13 @@ fun DoActivityScreenNegativeResult(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Dialog(
-            onDismissRequest = {}
+            onDismissRequest = {},
         ) {
             AnswerResultCard(
-                isCorrectAnswer = false
+                isCorrectAnswer = false,
             )
         }
     }
@@ -162,10 +165,10 @@ fun DoActivityScreenNegativeResult(
 private fun DoActivityScreenNegativeResultPreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Estudiando"
+            title = "Estudiando",
         ) {
             MultipleChoiceExample(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
 
             DoActivityScreenNegativeResult()
