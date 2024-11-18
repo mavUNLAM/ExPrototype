@@ -6,74 +6,80 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
-import com.mav.software.excellentiaprototype.ui.theme.GrassGreen
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier,
-    name: String
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Bienvenido $name!",
-        content = {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize()
-            ) {
-                Text("Actividades")
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        Text("Actividades")
 
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(GrassGreen)
-                        .padding(10.dp)
-                ) {
-                    Text(
-                        text = "Crear actividad",
-                    )
-                    Text(
-                        text = "Ver actividades",
-                    )
-                }
-
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(GrassGreen)
-                        .padding(10.dp)
-                ) {
-                    Text("Estadisticas",
-                        modifier = Modifier.clickable {
-                            // ACA LA ACCION
-                        }
-                    )
-
-                }
-            }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .padding(10.dp)
+        ) {
+            Text(
+                color = MaterialTheme.colorScheme.background,
+                text = "Crear actividad",
+            )
+            Text(
+                color = MaterialTheme.colorScheme.background,
+                text = "Ver actividades",
+            )
         }
-     )
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .padding(10.dp)
+        ) {
+            Text("Estadisticas",
+                color = MaterialTheme.colorScheme.background,
+                modifier = Modifier.clickable {
+                    navController.navigate("StatisticsScreen")
+                }
+            )
+
+        }
+    }
 }
 
 @Composable
 @Preview
 fun HomeScreenPreview() {
-    HomeScreen(
-        modifier = Modifier,
-        name = "Juan Carlos Otero"
-    )
+    ExcellentiaPrototypeTheme {
+        Scaffold() { padding ->
+            HomeScreen(
+                modifier = Modifier.padding(padding),
+                navController = createFakeNavController()
+            )
+        }
+    }
 }

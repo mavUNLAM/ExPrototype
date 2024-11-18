@@ -19,6 +19,7 @@ import com.mav.software.excellentiaprototype.ui.doactivity.components.SubjectLis
 import com.mav.software.excellentiaprototype.ui.doactivity.components.defaultFinishedList
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.TitleWithArrow
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -27,7 +28,8 @@ fun DoActivityConfigurationScreen(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Configuración de actividades"
+        title = "Configuración de actividades",
+        navController = createFakeNavController()
     ) {
         Column(
             modifier = Modifier
@@ -85,7 +87,8 @@ fun DoActivityScreen(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Estudiando"
+        title = "Estudiando",
+        navController = createFakeNavController()
     ) {
         MultipleChoiceExample(
             modifier = Modifier
@@ -109,7 +112,8 @@ fun DoActivityScreenPositiveResult(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Estudiando"
+        title = "Estudiando",
+        navController = createFakeNavController()
     ) {
         MultipleChoiceExample(
             modifier = Modifier.fillMaxSize()
@@ -136,7 +140,8 @@ fun DoActivityScreenNegativeResult(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Estudiando"
+        title = "Estudiando",
+        navController = createFakeNavController()
     ) {
         MultipleChoiceExample(
             modifier = Modifier.fillMaxSize()

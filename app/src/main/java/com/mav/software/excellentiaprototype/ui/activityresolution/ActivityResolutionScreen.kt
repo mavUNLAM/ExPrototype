@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -27,7 +28,8 @@ fun ActivityResolutionScreen(
         modifier = modifier.verticalScroll(
             state = rememberScrollState()
         ),
-        title = "Resolución de actividad"
+        title = "Resolución de actividad",
+        navController = createFakeNavController()
     ) {
         Text(
             modifier = Modifier

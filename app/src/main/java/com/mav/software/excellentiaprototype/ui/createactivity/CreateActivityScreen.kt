@@ -26,6 +26,7 @@ import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.createactivity.components.HorizontalActivityPagerExample
 import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -34,7 +35,8 @@ fun CreateActivityScreen(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Seleccionar actividad"
+        title = "Seleccionar actividad",
+        navController = createFakeNavController()
     ) {
         HorizontalActivityPagerExample()
         FilledTonalButton(
@@ -66,7 +68,8 @@ fun CreateActivityScreen2(
 
     ScaffoldExample(
         modifier = modifier,
-        title = "Crear actividad"
+        title = "Crear actividad",
+        navController = createFakeNavController()
     ) {
         val commonModifier = Modifier
             .align(Alignment.CenterHorizontally)
@@ -159,7 +162,8 @@ fun CreateActivityScreen3(
 ) {
     ScaffoldExample(
         modifier = modifier,
-        title = "Preview"
+        title = "Preview",
+        navController = createFakeNavController()
     ) {
         MultipleChoiceExample(
             modifier = Modifier

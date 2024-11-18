@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
@@ -29,7 +30,8 @@ fun StatisticListScreen(
     modifier: Modifier = Modifier
 ) {
     ScaffoldExample(modifier = modifier,
-        title = "Resolvieron actividad 1"
+        title = "Resolvieron actividad 1",
+        navController = createFakeNavController()
     ) {
         Column(
             modifier = Modifier

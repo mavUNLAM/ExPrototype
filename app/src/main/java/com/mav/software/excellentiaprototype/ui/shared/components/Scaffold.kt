@@ -1,5 +1,6 @@
 package com.mav.software.excellentiaprototype.ui.shared.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,6 +40,8 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 fun ScaffoldExample(
     modifier: Modifier = Modifier,
     title: String = "Top app bar",
+    showBack: Boolean = true,
+    navController: NavController,
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
     Scaffold(
@@ -53,13 +57,18 @@ fun ScaffoldExample(
                     )
                 },
                 navigationIcon = {
-                    Icon(
-                        Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = "Back",
-                        modifier = Modifier
-                            .padding(horizontal = 5.dp),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
+                    if (showBack){
+                        Icon(
+                            Icons.AutoMirrored.Default.ArrowBack,
+                            contentDescription = "Back",
+                            modifier = Modifier
+                                .padding(horizontal = 5.dp)
+                                .clickable {
+                                    navController.popBackStack()
+                                },
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
                 },
                 colors = topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -103,7 +112,8 @@ fun ScaffoldExample(
 private fun ScaffoldExamplePreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Ejemplo"
+            title = "Ejemplo",
+            navController = createFakeNavController()
         )
     }
 

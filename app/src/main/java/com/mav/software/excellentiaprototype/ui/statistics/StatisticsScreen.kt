@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.model.Statistic
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.statistics.components.ChartListItem
@@ -23,37 +24,32 @@ fun StatisticsScreen(
     viewModel: StatisticsViewModel,
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Estadisticas comision"
+    Column(
+        modifier = modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(30.dp)
     ) {
+        Text(
+            text = viewModel.title,
+            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier.padding(20.dp)
+        )
+
+        PieChart(
+            data = viewModel.statistics,
+            modifier = Modifier
+                .padding(horizontal = 12.dp)
+                .fillMaxWidth()
+                .aspectRatio(1f)
+        )
+
         Column(
-            modifier = modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(30.dp)
+            modifier = Modifier
+                .padding(horizontal = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(
-                text = viewModel.title,
-                style = MaterialTheme.typography.headlineLarge,
-                modifier = Modifier.padding(20.dp)
-            )
-
-            PieChart(
-                data = viewModel.statistics,
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth()
-                    .aspectRatio(1f)
-            )
-
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                for (statistic in viewModel.statistics) {
-                    ChartListItem(statistic.title, statistic.percent, statistic.color)
-                }
+            for (statistic in viewModel.statistics) {
+                ChartListItem(statistic.title, statistic.percent, statistic.color)
             }
         }
     }
