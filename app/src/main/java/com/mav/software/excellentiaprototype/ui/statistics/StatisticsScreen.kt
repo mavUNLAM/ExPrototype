@@ -12,9 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.model.Statistic
-import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.statistics.components.ChartListItem
 import com.mav.software.excellentiaprototype.ui.statistics.components.PieChart
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme

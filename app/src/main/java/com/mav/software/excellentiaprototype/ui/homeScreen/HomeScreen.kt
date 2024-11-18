@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
@@ -45,6 +43,10 @@ fun HomeScreen(
             Text(
                 color = MaterialTheme.colorScheme.background,
                 text = "Crear actividad",
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("CreateActivityScreen")
+                    }
             )
             Text(
                 color = MaterialTheme.colorScheme.background,
@@ -62,9 +64,10 @@ fun HomeScreen(
         ) {
             Text("Estadisticas",
                 color = MaterialTheme.colorScheme.background,
-                modifier = Modifier.clickable {
-                    navController.navigate("StatisticsScreen")
-                }
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate("StatisticsScreen")
+                    }
             )
 
         }
