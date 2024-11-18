@@ -2,13 +2,12 @@ package com.mav.software.excellentiaprototype.ui.statistics.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.model.Statistic
-import com.mav.software.excellentiaprototype.ui.theme.GrassGreen
-import com.mav.software.excellentiaprototype.ui.theme.PurpleGrey40
 
 @Composable
 fun PieChart(
@@ -39,8 +38,8 @@ fun PieChart(
 @Composable
 fun PieChartPreview() {
     val data = listOf(
-        Statistic("Resolvieron", 75f, GrassGreen),
-        Statistic("No resolvieron", 25f, PurpleGrey40)
+        Statistic("Resolvieron", 75f, MaterialTheme.colorScheme.primary),
+        Statistic("No resolvieron", 25f, MaterialTheme.colorScheme.secondary)
     )
     PieChart(data = data, modifier = Modifier.size(200.dp))
 }

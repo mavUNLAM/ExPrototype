@@ -6,19 +6,17 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mav.software.excellentiaprototype.model.Statistic
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.statistics.components.ChartListItem
 import com.mav.software.excellentiaprototype.ui.statistics.components.PieChart
-import com.mav.software.excellentiaprototype.ui.theme.GrassGreen
-import com.mav.software.excellentiaprototype.ui.theme.PurpleGrey40
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun StatisticsScreen(
@@ -31,13 +29,13 @@ fun StatisticsScreen(
     ) {
         Column(
             modifier = modifier
-                .fillMaxSize()
-                .padding(horizontal = 10.dp),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(30.dp)
         ) {
             Text(
                 text = viewModel.title,
-                fontSize = 32.sp
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(20.dp)
             )
 
             PieChart(
@@ -61,17 +59,19 @@ fun StatisticsScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
+@PreviewLightDark
 @Composable
-fun StatisticsPreview() {
-    StatisticsScreen(
-        viewModel = StatisticsViewModel(
-            title = "Actividad 1",
-            statistics = listOf(
-                Statistic("No resolvieron", 25f, PurpleGrey40),
-                Statistic("Resolvieron", 75f, GrassGreen),
+private fun StatisticsPreview() {
+    ExcellentiaPrototypeTheme {
+        StatisticsScreen(
+            viewModel = StatisticsViewModel(
+                title = "Actividad 1",
+                statistics = listOf(
+                    Statistic("No resolvieron", 25f, MaterialTheme.colorScheme.primary),
+                    Statistic("Resolvieron", 75f, MaterialTheme.colorScheme.primaryContainer),
+                )
             )
         )
-    )
+    }
+
 }

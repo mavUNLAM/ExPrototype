@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,8 +20,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun StatisticListScreen(
@@ -29,13 +32,16 @@ fun StatisticListScreen(
         title = "Resolvieron actividad 1"
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
+                .verticalScroll(state = rememberScrollState())
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text("Listado estudiantes", fontSize = 32.sp,
+            Text(
+                text ="Listado estudiantes",
                 modifier = Modifier
-                    .padding(horizontal = 10.dp)
+                    .padding(10.dp),
+                style = MaterialTheme.typography.headlineMedium
             )
 
             for (name in students) {
@@ -52,19 +58,45 @@ fun StatisticListScreen(
                             .clip(CircleShape)
                             .background(Color.Black)
                     )
-                    Text(name, fontSize = 16.sp)
+                    Text(
+                        text = name,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
             }
         }
     }
 }
 
+private val students = listOf(
+    "Smith, John William",
+    "Jones, Emily Grace",
+    "Brown, Michael David",
+    "Davis, Jessica Ann",
+    "Wilson, Christopher James",
+    "Anderson, Ashley Marie",
+    "Taylor, Matthew Robert",
+    "Thomas, Sarah Elizabeth",
+    "Moore, Daniel Joseph",
+    "Martin, Brittany Nicole",
+    "Jackson, Andrew Thomas",
+    "Thompson, Madison Alexis",
+    "White, Joshua Ryan",
+    "Harris, Lauren Michelle",
+    "Sanchez, Kevin Anthony",
+    "Clark, Amber Lynn",
+    "Lewis, Justin Patrick",
+    "Robinson, Kayla Victoria",
+    "Walker, Brian Christopher",
+    "Hall, Megan Elizabeth"
+).sorted()
+
 @Composable
 @Preview
 fun StatisticListScreenPreview(){
-    StatisticListScreen(
-        students = listOf(
-            "Bolsano, Nicolas", "Ñino, Matias", "Zapato, Ezequiel"
+    ExcellentiaPrototypeTheme {
+        StatisticListScreen(
+            students = students
         )
-    )
+    }
 }
