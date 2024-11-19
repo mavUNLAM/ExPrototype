@@ -1,31 +1,45 @@
 package com.mav.software.excellentiaprototype.ui.doactivity
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
 import com.mav.software.excellentiaprototype.ui.doactivity.components.AnswerResultCard
 import com.mav.software.excellentiaprototype.ui.doactivity.components.SubjectList
 import com.mav.software.excellentiaprototype.ui.doactivity.components.defaultFinishedList
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.shared.components.TitleWithArrow
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun DoActivityConfigurationScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
-    Column(
+    Box(
         modifier = modifier,
     ) {
         Column(
@@ -67,8 +81,24 @@ fun DoActivityConfigurationScreen(
                 minLines = 1,
             )
             SubjectList(
-                list = listOf("Multiple choice", "Verdadero o falso", "Etc."),
+                list = listOf("Multiple choice", "Verdadero o falso"),
             )
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth(0.75f)
+                    .height(40.dp)
+                    .align(Alignment.CenterHorizontally),
+                onClick = {
+                    navController.navigate("DoActivityScreen")
+                },
+                colors = ButtonDefaults.filledTonalButtonColors().copy(
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
+                Text(text = "Siguiente")
+            }
         }
     }
 }
@@ -80,7 +110,7 @@ private fun DoActivityConfigurationScreenPreview() {
         ScaffoldExample(
             title = "Configuracion de actividades",
         ) {
-            DoActivityConfigurationScreen()
+            DoActivityConfigurationScreen(navController = createFakeNavController())
         }
     }
 }
@@ -89,15 +119,44 @@ private fun DoActivityConfigurationScreenPreview() {
 fun DoActivityScreen(
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier,
-    ) {
-        MultipleChoiceExample(
-            modifier =
+    var showPositive by remember { mutableStateOf(false) }
+    var showNegative by remember { mutableStateOf(false) }
+
+    Box {
+        Column(
+            modifier = modifier,
+        ) {
+            MultipleChoiceExample(
+                modifier =
                 Modifier
                     .fillMaxSize(),
-        )
+                optionSelectedAction = { opcionSeleccionada ->
+                    if(opcionSeleccionada == 1) {
+                        showPositive = true
+                    } else {
+                        showNegative = true
+                    }
+                }
+            )
+        }
+
+        if(showPositive) {
+            DoActivityScreenPositiveResult(
+                onDismissRequest = {
+                    showPositive = false
+                }
+            )
+        }
+
+        if(showNegative) {
+            DoActivityScreenNegativeResult(
+                onDismissRequest = {
+                    showNegative = false
+                }
+            )
+        }
     }
+
 }
 
 @PreviewLightDark
@@ -114,15 +173,22 @@ private fun DoActivityScreenPreview() {
 
 @Composable
 fun DoActivityScreenPositiveResult(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit = {}
 ) {
     Column(
         modifier = modifier,
     ) {
         Dialog(
-            onDismissRequest = {},
+            onDismissRequest = {
+                onDismissRequest()
+            },
         ) {
-            AnswerResultCard()
+            AnswerResultCard(
+                onDismissRequest = {
+                    onDismissRequest()
+                }
+            )
         }
     }
 }
@@ -145,16 +211,22 @@ private fun DoActivityScreenPositiveResultPreview() {
 
 @Composable
 fun DoActivityScreenNegativeResult(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit = {}
 ) {
     Column(
         modifier = modifier,
     ) {
         Dialog(
-            onDismissRequest = {},
+            onDismissRequest = {
+                onDismissRequest()
+            },
         ) {
             AnswerResultCard(
                 isCorrectAnswer = false,
+                onDismissRequest = {
+                    onDismissRequest()
+                }
             )
         }
     }

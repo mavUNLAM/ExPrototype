@@ -102,7 +102,9 @@ fun AppNavigation(
         }
 
         composable("DoActivityConfigurationScreen") {
-            DoActivityConfigurationScreen()
+            DoActivityConfigurationScreen(
+                navController = navController
+            )
         }
     }
 }

@@ -60,7 +60,7 @@ fun HomeScreen(
             }
 
             Button(onClick = {
-                navController.navigate("DoActivityScreen")
+                navController.navigate("DoActivityConfigurationScreen")
             }) {
                 Text(
                     text = "Ver actividades",

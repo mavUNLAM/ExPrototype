@@ -23,7 +23,8 @@ fun AnswerResultCard(
     modifier: Modifier = Modifier,
     option: Int = 2,
     percentage: Double = 0.5,
-    isCorrectAnswer: Boolean = true
+    isCorrectAnswer: Boolean = true,
+    onDismissRequest: () -> Unit = {}
 ) {
     val title = if (isCorrectAnswer) "Respuesta correcta" else "Respuesta incorrecta"
     var body = if (isCorrectAnswer) "Has acertado con la opción $option." else "La opción $option es incorrecta."
@@ -55,12 +56,16 @@ fun AnswerResultCard(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             FilledTonalButton(
-                onClick = {}
+                onClick = {
+                    onDismissRequest()
+                }
             ) {
                 Text(text = "Descansar")
             }
             FilledTonalButton(
-                onClick = {}
+                onClick = {
+                    onDismissRequest()
+                }
             ) {
                 Text(text = "Seguir estudiando")
             }
@@ -69,7 +74,9 @@ fun AnswerResultCard(
             modifier = Modifier
                 .padding(10.dp)
                 .align(Alignment.CenterHorizontally),
-            onClick = {}
+            onClick = {
+                onDismissRequest()
+            }
         ) {
             Text(text = "Ver resolución")
         }
