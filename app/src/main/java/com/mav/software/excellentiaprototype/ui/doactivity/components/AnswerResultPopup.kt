@@ -16,14 +16,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 
 @Preview(showBackground = true)
 @Composable
 fun AnswerResultCard(
     modifier: Modifier = Modifier,
+    navController: NavController = createFakeNavController(),
     option: Int = 2,
     percentage: Double = 0.5,
-    isCorrectAnswer: Boolean = true
+    isCorrectAnswer: Boolean = true,
+    onDismissRequest: () -> Unit = {}
 ) {
     val title = if (isCorrectAnswer) "Respuesta correcta" else "Respuesta incorrecta"
     var body = if (isCorrectAnswer) "Has acertado con la opción $option." else "La opción $option es incorrecta."
@@ -55,21 +59,35 @@ fun AnswerResultCard(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             FilledTonalButton(
-                onClick = {}
+                onClick = {
+                    onDismissRequest()
+                    navController.popBackStack("HomeScreen", inclusive = false)
+                }
             ) {
                 Text(text = "Descansar")
             }
             FilledTonalButton(
-                onClick = {}
+                onClick = {
+                    onDismissRequest()
+                    navController.popBackStack("DoActivityConfigurationScreen", inclusive = false)
+                }
             ) {
                 Text(text = "Seguir estudiando")
+
             }
         }
         OutlinedButton(
             modifier = Modifier
                 .padding(10.dp)
                 .align(Alignment.CenterHorizontally),
-            onClick = {}
+            onClick = {
+                onDismissRequest()
+                navController.navigate("ActivityResolutionScreen") {
+                    popUpTo("HomeScreen") {
+                        inclusive = false
+                    }
+                }
+            }
         ) {
             Text(text = "Ver resolución")
         }

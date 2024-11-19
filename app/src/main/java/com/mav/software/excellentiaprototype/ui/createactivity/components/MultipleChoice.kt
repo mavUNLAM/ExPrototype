@@ -1,6 +1,7 @@
 package com.mav.software.excellentiaprototype.ui.createactivity.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +31,8 @@ fun MultipleChoiceExample(
     modifier: Modifier = Modifier,
     multipleChoice: MultipleChoiceUi = multipleChoiceUiExample,
     elevation: Dp = 5.dp,
-    paddingSpacer: Dp = 5.dp
+    paddingSpacer: Dp = 5.dp,
+    optionSelectedAction: (Int) -> Unit = {}
 ) {
     ElevatedCard(
         modifier = modifier,
@@ -80,7 +82,11 @@ fun MultipleChoiceExample(
                 thickness = 2.dp
             )
             OutlinedCard(
-                modifier = Modifier.padding(start = 3.dp, top = 3.dp, end = 3.dp),
+                modifier = Modifier
+                    .clickable {
+                        optionSelectedAction(1)
+                    }
+                    .padding(start = 3.dp, top = 3.dp, end = 3.dp),
                 colors = CardDefaults.outlinedCardColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
@@ -96,7 +102,11 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(paddingSpacer)
             )
             OutlinedCard(
-                modifier = Modifier.padding(horizontal = 3.dp)
+                modifier = Modifier
+                    .clickable {
+                        optionSelectedAction(2)
+                    }
+                    .padding(horizontal = 3.dp)
             ){
                 Text(
                     modifier = Modifier.padding(8.dp),
@@ -109,7 +119,11 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(paddingSpacer)
             )
             OutlinedCard(
-                modifier = Modifier.padding(horizontal = 3.dp)
+                modifier = Modifier
+                    .clickable {
+                        optionSelectedAction(3)
+                    }
+                    .padding(horizontal = 3.dp)
             ){
                 Text(
                     modifier = Modifier.padding(8.dp),
@@ -122,7 +136,11 @@ fun MultipleChoiceExample(
                 modifier = Modifier.padding(paddingSpacer)
             )
             OutlinedCard(
-                modifier = Modifier.padding(horizontal = 3.dp)
+                modifier = Modifier
+                    .clickable {
+                        optionSelectedAction(4)
+                    }
+                    .padding(horizontal = 3.dp)
             ){
                 Text(
                     modifier = Modifier.padding(8.dp),

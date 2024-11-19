@@ -4,13 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.mav.software.excellentiaprototype.ui.shared.components.AppNavigation
+import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,30 +15,47 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
+            val currentBackStackEntry = navController.currentBackStackEntryAsState()
+            val currentRoute = currentBackStackEntry.value?.destination?.route
+
             ExcellentiaPrototypeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                ScaffoldExample(
+                    title =
+                        when (currentRoute) {
+                            "HomeScreen" -> "Bienvenido Juan Carlos Otero!"
+                            "StatisticsScreen" -> "Estadisticas comision"
+                            "StatisticsListScreen" -> "Listado actividad 1"
+                            "CreateActivityScreen" -> "Seleccionar actividad"
+                            "CreateActivityScreen2" -> "Crear actividad"
+                            "CreateActivityScreen3" -> "Preview"
+                            "DoActivityScreen" -> "Estudiando"
+                            "DoActivityConfigurationScreen" -> "Configuración de actividades"
+                            "ActivityResolutionScreen" -> "Resolucion de actividades"
+                            "LoginScreen" -> "Login"
+                            else -> ""
+                        },
+                    showBack =
+                        when (currentRoute) {
+                            "HomeScreen" -> false
+                            "LoginScreen" -> false
+                            else -> true
+                        },
+                    showHamburger =
+                        when (currentRoute) {
+                            "HomeScreen" -> true
+                            else -> false
+                        },
+                    showBottomBar =
+                        when (currentRoute) {
+                            "LoginScreen" -> false
+                            else -> true
+                        },
+                    navController = navController,
+                ) {
+                    AppNavigation(navController = navController)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ExcellentiaPrototypeTheme {
-        Greeting("Android")
     }
 }

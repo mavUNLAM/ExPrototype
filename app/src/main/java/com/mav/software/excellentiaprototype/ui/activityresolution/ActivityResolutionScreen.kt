@@ -1,6 +1,7 @@
 package com.mav.software.excellentiaprototype.ui.activityresolution
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -23,11 +24,10 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 fun ActivityResolutionScreen(
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
+    Column(
         modifier = modifier.verticalScroll(
             state = rememberScrollState()
-        ),
-        title = "Resolución de actividad"
+        )
     ) {
         Text(
             modifier = Modifier
@@ -63,7 +63,11 @@ fun ActivityResolutionScreen(
 @Composable
 private fun ActivityResolutionScreenPreview() {
     ExcellentiaPrototypeTheme {
-        ActivityResolutionScreen()
+        ScaffoldExample(
+            title = "Resolucion de actividad"
+        ) {
+            ActivityResolutionScreen()
+        }
     }
 }
 

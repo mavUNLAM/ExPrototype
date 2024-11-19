@@ -2,6 +2,7 @@ package com.mav.software.excellentiaprototype.ui.createactivity
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,24 +23,28 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.createactivity.components.HorizontalActivityPagerExample
 import com.mav.software.excellentiaprototype.ui.createactivity.components.MultipleChoiceExample
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun CreateActivityScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Seleccionar actividad"
+    Column(
+        modifier = modifier
     ) {
         HorizontalActivityPagerExample()
         FilledTonalButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = {}
+            onClick = {
+                navController.navigate("CreateActivityScreen2")
+            }
         ) {
             Text(text = "Seleccionar")
         }
@@ -50,13 +55,16 @@ fun CreateActivityScreen(
 @Composable
 private fun CreateActivityScreenPreview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen()
+        ScaffoldExample(title = "Seleccionar actividad") {
+            CreateActivityScreen(navController = createFakeNavController())
+        }
     }
 }
 
 @Composable
 fun CreateActivityScreen2(
-    modifier: Modifier = Modifier.fillMaxSize()
+    modifier: Modifier = Modifier.fillMaxSize(),
+    navController: NavController
 ) {
     var questionText by remember { mutableStateOf("") }
     var option1Text by remember { mutableStateOf("") }
@@ -64,9 +72,8 @@ fun CreateActivityScreen2(
     var option3Text by remember { mutableStateOf("") }
     var option4Text by remember { mutableStateOf("") }
 
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Crear actividad"
+    Column(
+        modifier = modifier
     ) {
         val commonModifier = Modifier
             .align(Alignment.CenterHorizontally)
@@ -138,7 +145,9 @@ fun CreateActivityScreen2(
         )
         FilledTonalButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = {}
+            onClick = {
+                navController.navigate("CreateActivityScreen3")
+            }
         ) {
             Text(text = "Preview")
         }
@@ -149,17 +158,21 @@ fun CreateActivityScreen2(
 @Composable
 fun CreateActivityScreen2Preview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen2()
+        ScaffoldExample(title = "Crear actividad") {
+            CreateActivityScreen2(
+                navController = createFakeNavController()
+            )
+        }
     }
 }
 
 @Composable
 fun CreateActivityScreen3(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
-    ScaffoldExample(
-        modifier = modifier,
-        title = "Preview"
+    Column (
+        modifier = modifier
     ) {
         MultipleChoiceExample(
             modifier = Modifier
@@ -167,7 +180,9 @@ fun CreateActivityScreen3(
         )
         FilledTonalButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = {},
+            onClick = {
+                navController.popBackStack(route = "HomeScreen", inclusive = false)
+            },
             colors = ButtonDefaults.filledTonalButtonColors().copy(
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 containerColor = MaterialTheme.colorScheme.primaryContainer
@@ -182,6 +197,10 @@ fun CreateActivityScreen3(
 @Composable
 fun CreateActivityScreen3Preview() {
     ExcellentiaPrototypeTheme {
-        CreateActivityScreen3()
+        ScaffoldExample(title = "Preview") {
+            CreateActivityScreen3(
+                navController = createFakeNavController()
+            )
+        }
     }
 }

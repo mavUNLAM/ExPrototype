@@ -37,7 +37,9 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 @Composable
 fun LoginFields(
     modifier: Modifier = Modifier,
-    onForgotPasswordClick: () -> Unit = {}
+    onForgotPasswordClick: () -> Unit = {} ,
+    onLoginClick: () -> Unit = {}
+
 ) {
     var user by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -143,10 +145,11 @@ fun LoginFields(
                 if (user.isEmpty() || user != "estudiante" && user != "profesor") {
                     isUserError = true
                     userErrorText = "* Usuario incorrecto"
-                }
-                if (password.isEmpty()) {
+                } else if (password.isEmpty()) {
                     isPasswordError = true
                     passwordErrorText = "* Contraseña incorrecta"
+                }else{
+                    onLoginClick()
                 }
             }
         )

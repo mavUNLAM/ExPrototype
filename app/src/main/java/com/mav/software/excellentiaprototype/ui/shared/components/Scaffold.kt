@@ -1,5 +1,6 @@
 package com.mav.software.excellentiaprototype.ui.shared.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -11,13 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -31,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,28 +38,41 @@ import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 fun ScaffoldExample(
     modifier: Modifier = Modifier,
     title: String = "Top app bar",
+    showBack: Boolean = true,
+    showHamburger: Boolean = false,
+    showBottomBar: Boolean = true,
+    navController: NavController = createFakeNavController(),
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 actions = {
-                    Icon(
+                    if(showHamburger){
+                        Icon(
                         Icons.Default.Menu,
                         contentDescription = "Menu",
-                        modifier = Modifier
-                            .padding(horizontal = 5.dp),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        modifier =
+                            Modifier
+                                .padding(horizontal = 5.dp),
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
+                    }
                 },
                 navigationIcon = {
-                    Icon(
-                        Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = "Back",
-                        modifier = Modifier
-                            .padding(horizontal = 5.dp),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
+                    if (showBack) {
+                        Icon(
+                            Icons.AutoMirrored.Default.ArrowBack,
+                            contentDescription = "Back",
+                            modifier =
+                                Modifier
+                                    .padding(horizontal = 5.dp)
+                                    .clickable {
+                                        navController.popBackStack()
+                                    },
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        )
+                    }
                 },
                 colors = topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -68,29 +81,27 @@ fun ScaffoldExample(
                 title = {
                     Text(
                         text = title,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
-                }
+                },
             )
         },
         bottomBar = {
-            BottomAppBar(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            ) {
-                BottomBar(modifier = Modifier.fillMaxWidth())
+            if(showBottomBar) {
+                BottomAppBar(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                ) {
+                    BottomBar(modifier = Modifier.fillMaxWidth())
+                }
             }
         },
-        floatingActionButton = {
-            FloatingActionButton(onClick = { }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        }
     ) { innerPadding ->
         Column(
-            modifier = modifier
-                .padding(innerPadding)
-                .fillMaxSize(),
+            modifier =
+                modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             content()
@@ -103,7 +114,8 @@ fun ScaffoldExample(
 private fun ScaffoldExamplePreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
-            title = "Ejemplo"
+            title = "Ejemplo",
+            navController = createFakeNavController()
         )
     }
 
