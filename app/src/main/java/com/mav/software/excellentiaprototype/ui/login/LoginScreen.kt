@@ -43,6 +43,7 @@ private fun LoginScreenPreview() {
     ExcellentiaPrototypeTheme {
         ScaffoldExample(
             showBack = false,
+            showBottomBar = false,
             title = "Login"
         ) {
             LoginScreen()

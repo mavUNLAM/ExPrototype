@@ -46,6 +46,11 @@ class MainActivity : ComponentActivity() {
                             "HomeScreen" -> true
                             else -> false
                         },
+                    showBottomBar =
+                        when (currentRoute) {
+                            "LoginScreen" -> false
+                            else -> true
+                        },
                     navController = navController,
                 ) {
                     AppNavigation(navController = navController)

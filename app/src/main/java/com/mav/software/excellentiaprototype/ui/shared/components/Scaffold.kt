@@ -40,6 +40,7 @@ fun ScaffoldExample(
     title: String = "Top app bar",
     showBack: Boolean = true,
     showHamburger: Boolean = false,
+    showBottomBar: Boolean = true,
     navController: NavController = createFakeNavController(),
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
@@ -86,11 +87,13 @@ fun ScaffoldExample(
             )
         },
         bottomBar = {
-            BottomAppBar(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            ) {
-                BottomBar(modifier = Modifier.fillMaxWidth())
+            if(showBottomBar) {
+                BottomAppBar(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                ) {
+                    BottomBar(modifier = Modifier.fillMaxWidth())
+                }
             }
         },
     ) { innerPadding ->
