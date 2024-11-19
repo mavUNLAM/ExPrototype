@@ -116,6 +116,7 @@ private fun DoActivityConfigurationScreenPreview() {
 
 @Composable
 fun DoActivityScreen(
+    navController: NavController = createFakeNavController(),
     modifier: Modifier = Modifier
 ) {
     var showPositive by remember { mutableStateOf(false) }
@@ -141,6 +142,7 @@ fun DoActivityScreen(
 
         if(showPositive) {
             DoActivityScreenPositiveResult(
+                navController = navController,
                 onDismissRequest = {
                     showPositive = false
                 }
@@ -149,6 +151,7 @@ fun DoActivityScreen(
 
         if(showNegative) {
             DoActivityScreenNegativeResult(
+                navController = navController,
                 onDismissRequest = {
                     showNegative = false
                 }
@@ -173,6 +176,7 @@ private fun DoActivityScreenPreview() {
 @Composable
 fun DoActivityScreenPositiveResult(
     modifier: Modifier = Modifier,
+    navController: NavController = createFakeNavController(),
     onDismissRequest: () -> Unit = {}
 ) {
     Column(
@@ -184,6 +188,7 @@ fun DoActivityScreenPositiveResult(
             },
         ) {
             AnswerResultCard(
+                navController = navController,
                 onDismissRequest = {
                     onDismissRequest()
                 }
@@ -211,6 +216,7 @@ private fun DoActivityScreenPositiveResultPreview() {
 @Composable
 fun DoActivityScreenNegativeResult(
     modifier: Modifier = Modifier,
+    navController: NavController = createFakeNavController(),
     onDismissRequest: () -> Unit = {}
 ) {
     Column(
@@ -222,6 +228,7 @@ fun DoActivityScreenNegativeResult(
             },
         ) {
             AnswerResultCard(
+                navController = navController,
                 isCorrectAnswer = false,
                 onDismissRequest = {
                     onDismissRequest()

@@ -16,11 +16,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 
 @Preview(showBackground = true)
 @Composable
 fun AnswerResultCard(
     modifier: Modifier = Modifier,
+    navController: NavController = createFakeNavController(),
     option: Int = 2,
     percentage: Double = 0.5,
     isCorrectAnswer: Boolean = true,
@@ -58,6 +61,7 @@ fun AnswerResultCard(
             FilledTonalButton(
                 onClick = {
                     onDismissRequest()
+                    navController.popBackStack("HomeScreen", inclusive = false)
                 }
             ) {
                 Text(text = "Descansar")
@@ -65,9 +69,11 @@ fun AnswerResultCard(
             FilledTonalButton(
                 onClick = {
                     onDismissRequest()
+                    navController.popBackStack("DoActivityConfigurationScreen", inclusive = false)
                 }
             ) {
                 Text(text = "Seguir estudiando")
+
             }
         }
         OutlinedButton(
@@ -76,6 +82,11 @@ fun AnswerResultCard(
                 .align(Alignment.CenterHorizontally),
             onClick = {
                 onDismissRequest()
+                navController.navigate("ActivityResolutionScreen") {
+                    popUpTo("HomeScreen") {
+                        inclusive = false
+                    }
+                }
             }
         ) {
             Text(text = "Ver resolución")

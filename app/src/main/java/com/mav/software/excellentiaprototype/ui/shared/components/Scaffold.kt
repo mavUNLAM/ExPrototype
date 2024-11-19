@@ -39,6 +39,7 @@ fun ScaffoldExample(
     modifier: Modifier = Modifier,
     title: String = "Top app bar",
     showBack: Boolean = true,
+    showHamburger: Boolean = false,
     navController: NavController = createFakeNavController(),
     content: @Composable ColumnScope.() -> Unit = {}
 ) {
@@ -46,7 +47,8 @@ fun ScaffoldExample(
         topBar = {
             TopAppBar(
                 actions = {
-                    Icon(
+                    if(showHamburger){
+                        Icon(
                         Icons.Default.Menu,
                         contentDescription = "Menu",
                         modifier =
@@ -54,6 +56,7 @@ fun ScaffoldExample(
                                 .padding(horizontal = 5.dp),
                         tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
+                    }
                 },
                 navigationIcon = {
                     if (showBack) {

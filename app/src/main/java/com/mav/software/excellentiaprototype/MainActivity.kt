@@ -31,12 +31,20 @@ class MainActivity : ComponentActivity() {
                             "CreateActivityScreen3" -> "Preview"
                             "DoActivityScreen" -> "Estudiando"
                             "DoActivityConfigurationScreen" -> "Configuración de actividades"
+                            "ActivityResolutionScreen" -> "Resolucion de actividades"
+                            "LoginScreen" -> "Login"
                             else -> ""
                         },
                     showBack =
                         when (currentRoute) {
                             "HomeScreen" -> false
+                            "LoginScreen" -> false
                             else -> true
+                        },
+                    showHamburger =
+                        when (currentRoute) {
+                            "HomeScreen" -> true
+                            else -> false
                         },
                     navController = navController,
                 ) {

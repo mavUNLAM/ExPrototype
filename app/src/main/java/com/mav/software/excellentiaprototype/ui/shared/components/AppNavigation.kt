@@ -8,12 +8,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.mav.software.excellentiaprototype.model.Statistic
+import com.mav.software.excellentiaprototype.ui.activityresolution.ActivityResolutionScreen
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen2
 import com.mav.software.excellentiaprototype.ui.createactivity.CreateActivityScreen3
 import com.mav.software.excellentiaprototype.ui.doactivity.DoActivityConfigurationScreen
 import com.mav.software.excellentiaprototype.ui.doactivity.DoActivityScreen
 import com.mav.software.excellentiaprototype.ui.homeScreen.HomeScreen
+import com.mav.software.excellentiaprototype.ui.login.LoginScreen
 import com.mav.software.excellentiaprototype.ui.statistics.StatisticsScreen
 import com.mav.software.excellentiaprototype.ui.statistics.StatisticsViewModel
 import com.mav.software.excellentiaprototype.ui.statisticsList.StatisticListScreen
@@ -28,7 +30,7 @@ fun AppNavigation(
         exitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Start, tween(200)) },
         popEnterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.End, tween(200)) },
         popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.End, tween(200)) },
-        startDestination = "HomeScreen",
+        startDestination = "LoginScreen",
     ) {
         composable("HomeScreen") {
             HomeScreen(
@@ -98,11 +100,23 @@ fun AppNavigation(
         }
 
         composable("DoActivityScreen") {
-            DoActivityScreen()
+            DoActivityScreen(
+                navController = navController
+            )
         }
 
         composable("DoActivityConfigurationScreen") {
             DoActivityConfigurationScreen(
+                navController = navController
+            )
+        }
+
+        composable("ActivityResolutionScreen"){
+            ActivityResolutionScreen()
+        }
+
+        composable("LoginScreen"){
+            LoginScreen(
                 navController = navController
             )
         }

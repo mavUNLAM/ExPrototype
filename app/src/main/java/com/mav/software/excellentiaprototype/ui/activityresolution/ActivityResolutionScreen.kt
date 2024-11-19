@@ -1,6 +1,7 @@
 package com.mav.software.excellentiaprototype.ui.activityresolution
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -17,19 +18,16 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.mav.software.excellentiaprototype.R
 import com.mav.software.excellentiaprototype.ui.shared.components.ScaffoldExample
-import com.mav.software.excellentiaprototype.ui.shared.components.createFakeNavController
 import com.mav.software.excellentiaprototype.ui.theme.ExcellentiaPrototypeTheme
 
 @Composable
 fun ActivityResolutionScreen(
     modifier: Modifier = Modifier
 ) {
-    ScaffoldExample(
+    Column(
         modifier = modifier.verticalScroll(
             state = rememberScrollState()
-        ),
-        title = "Resolución de actividad",
-        navController = createFakeNavController()
+        )
     ) {
         Text(
             modifier = Modifier
@@ -65,7 +63,11 @@ fun ActivityResolutionScreen(
 @Composable
 private fun ActivityResolutionScreenPreview() {
     ExcellentiaPrototypeTheme {
-        ActivityResolutionScreen()
+        ScaffoldExample(
+            title = "Resolucion de actividad"
+        ) {
+            ActivityResolutionScreen()
+        }
     }
 }
 
