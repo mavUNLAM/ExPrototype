@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -121,6 +122,7 @@ fun DoActivityScreen(
 ) {
     var showPositive by remember { mutableStateOf(false) }
     var showNegative by remember { mutableStateOf(false) }
+    var option by remember { mutableIntStateOf(0) }
 
     Box {
         Column(
@@ -131,6 +133,7 @@ fun DoActivityScreen(
                 Modifier
                     .fillMaxSize(),
                 optionSelectedAction = { opcionSeleccionada ->
+                   option = opcionSeleccionada
                     if(opcionSeleccionada == 1) {
                         showPositive = true
                     } else {
@@ -143,6 +146,7 @@ fun DoActivityScreen(
         if(showPositive) {
             DoActivityScreenPositiveResult(
                 navController = navController,
+                option = option,
                 onDismissRequest = {
                     showPositive = false
                 }
@@ -152,6 +156,7 @@ fun DoActivityScreen(
         if(showNegative) {
             DoActivityScreenNegativeResult(
                 navController = navController,
+                option = option,
                 onDismissRequest = {
                     showNegative = false
                 }
@@ -176,6 +181,7 @@ private fun DoActivityScreenPreview() {
 @Composable
 fun DoActivityScreenPositiveResult(
     modifier: Modifier = Modifier,
+    option: Int,
     navController: NavController = createFakeNavController(),
     onDismissRequest: () -> Unit = {}
 ) {
@@ -189,6 +195,7 @@ fun DoActivityScreenPositiveResult(
         ) {
             AnswerResultCard(
                 navController = navController,
+                option = option,
                 onDismissRequest = {
                     onDismissRequest()
                 }
@@ -208,7 +215,9 @@ private fun DoActivityScreenPositiveResultPreview() {
                 modifier = Modifier.fillMaxSize(),
             )
 
-            DoActivityScreenPositiveResult()
+            DoActivityScreenPositiveResult(
+                option = 1
+            )
         }
     }
 }
@@ -216,6 +225,7 @@ private fun DoActivityScreenPositiveResultPreview() {
 @Composable
 fun DoActivityScreenNegativeResult(
     modifier: Modifier = Modifier,
+    option: Int,
     navController: NavController = createFakeNavController(),
     onDismissRequest: () -> Unit = {}
 ) {
@@ -229,6 +239,7 @@ fun DoActivityScreenNegativeResult(
         ) {
             AnswerResultCard(
                 navController = navController,
+                option = option,
                 isCorrectAnswer = false,
                 onDismissRequest = {
                     onDismissRequest()
@@ -249,7 +260,9 @@ private fun DoActivityScreenNegativeResultPreview() {
                 modifier = Modifier.fillMaxSize(),
             )
 
-            DoActivityScreenNegativeResult()
+            DoActivityScreenNegativeResult(
+                option = 2
+            )
         }
     }
 }
